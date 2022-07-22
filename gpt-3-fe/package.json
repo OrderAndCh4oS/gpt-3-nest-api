@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.9.1",
     "@nestjs/passport": "^9.0.0",
     "@types/yup": "^0.29.14",
     "axios": "^0.27.2",
