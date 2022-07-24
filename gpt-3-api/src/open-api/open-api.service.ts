@@ -12,13 +12,15 @@ export class OpenApiService {
                 OPEN_AI_API_URL + '/completions',
                 JSON.stringify({
                     // model: "curie:ft-orderandchaos-2022-07-21-19-34-30",
-                    model: "ada:ft-orderandchaos-2022-07-21-20-06-15",
+                    // model: "ada:ft-orderandchaos-2022-07-21-20-06-15",
+                    model: "davinci:ft-orderandchaos-2022-07-24-14-52-09",
                     prompt,
-                    temperature: 0.7,
-                    max_tokens: 64,
+                    temperature: 0.9,
+                    max_tokens: 70,
                     top_p: 1,
-                    frequency_penalty: 1,
-                    presence_penalty: 0
+                    frequency_penalty: 1.75,
+                    presence_penalty: 0,
+                    n: 3
                 }),
                 {
                     headers: {

@@ -45,8 +45,8 @@ def recommendations_from_strings(df, query, n=3):
     return result
 
 def get_recommendations(query):
-    search = search_reviews(df, query, n=5)
-    recommend = recommendations_from_strings(df, query, n=5)
+    search = search_reviews(df, query, n=3)
+    recommend = recommendations_from_strings(df, query, n=3)
 
     return {"search": search, "recommend": recommend}
 

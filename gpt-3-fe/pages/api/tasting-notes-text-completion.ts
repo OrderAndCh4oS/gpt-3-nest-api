@@ -5,7 +5,7 @@ import axios from "axios";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const {accessToken} = await getAccessToken(req, res);
-
+        // console.log(accessToken);
         const prompt = req.body.prompt
         const response = await axios.post('http://localhost:8080', {prompt}, {
             headers: {

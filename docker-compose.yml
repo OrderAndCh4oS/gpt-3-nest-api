@@ -7,6 +7,15 @@ services:
     volumes:
       - ./gpt-3-api:/usr/src/app
     command: "npm run start:dev"
+  wine-recommendation:
+    build: ./wine-recommendation
+    volumes:
+      - ./wine-recommendation:/usr/src/app/
+    ports:
+      - 4000:4000
+    environment:
+      PORT: 4000
+      FLASK_DEBUG: 1
   redis:
     image: "redis:alpine"
   db:
