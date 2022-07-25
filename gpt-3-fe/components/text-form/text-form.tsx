@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {ErrorMessage, Field, Form, Formik, FormikHelpers} from 'formik';
 import * as yup from 'yup';
-import styles from "../styles/index.module.css";
+import styles from './styles.module.css'
 
 const schema = yup.object({
     text: yup.string()
@@ -11,10 +11,11 @@ const schema = yup.object({
 
 interface IPostPromptFormProps<T> {
     handleSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<any>
+    buttonText: string
 }
 
 
-const TextForm: FC<IPostPromptFormProps<{ text: string }>> = ({handleSubmit}) => {
+const TextForm: FC<IPostPromptFormProps<{ text: string }>> = ({handleSubmit, buttonText}) => {
     return (
         <Formik
             initialValues={{text: ''}}
@@ -23,10 +24,12 @@ const TextForm: FC<IPostPromptFormProps<{ text: string }>> = ({handleSubmit}) =>
         >
             <Form>
                 <div className={styles.formField}>
-                    <Field name="text" as="textarea"/>
-                    <ErrorMessage name="text"/>
+                    <Field name="text" as="textarea" class={styles.textField}/>
+                    <div className={styles.errorMessage}>
+                        <ErrorMessage name="text"/>
+                    </div>
                 </div>
-                <button type="submit">Generate</button>
+                <button type="submit">{buttonText}</button>
             </Form>
         </Formik>
     );

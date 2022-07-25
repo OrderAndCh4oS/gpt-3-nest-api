@@ -1,8 +1,8 @@
 import {FC, useState} from "react";
-import TextForm from "./text-form";
+import TextForm from "./text-form/text-form";
 import {FormikHelpers} from "formik";
 import wineRecommendationRequest from "../api/wine-recommendation.request";
-import WineSuggestion from "./wine-suggestion";
+import WineSuggestion from "./wine-suggestion/wine-suggestion";
 
 interface IResults {
     search: IWine[],
@@ -30,30 +30,40 @@ const TastingNotesTextCompletion: FC = () => {
             const result = regex.exec(searchResult);
             if (!result?.groups) continue;
             search.push(result.groups as unknown as IWine);
+            break;
         }
         const recommendations: IWine[] = [];
         for (const recommendationResult of response.recommend) {
             const result = regex.exec(recommendationResult);
             if (!result?.groups) continue;
             recommendations.push(result.groups as unknown as IWine);
+            break;
         }
         setResults({search, recommendations})
         // console.log(response);
     }
 
     return (
-        <>
-            <h1>Wine Recommendations</h1>
-            <TextForm handleSubmit={handleSubmit}/>
-            <h2>Search Results</h2>
-            <div>
-                {results.search.map(wine => <WineSuggestion wine={wine}/>)}
-            </div>
-            <h2>Recommendations</h2>
-            <div>
-                {results.recommendations.map(wine => <WineSuggestion wine={wine}/>)}
-            </div>
-        </>
+        <div>
+            <h2>Wine Recommendations</h2>
+            <TextForm handleSubmit={handleSubmit} buttonText={'Discover'}/>
+            {results.search.length ? (
+                <>
+                    <h3>Search Results</h3>
+                    <div>
+                        {results.search.map(wine => <WineSuggestion wine={wine}/>)}
+                    </div>
+                </>
+            ) : null}
+            {results.recommendations.length ? (
+                <>
+                    <h3>Recommendations</h3>
+                    <div>
+                        {results.recommendations.map(wine => <WineSuggestion wine={wine}/>)}
+                    </div>
+                </>
+            ) : null}
+        </div>
     )
 }
 

@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import TextForm from "./text-form";
+import TextForm from "./text-form/text-form";
 import {FormikHelpers} from "formik";
 import tastingNotesTextCompletionRequest from "../api/tasting-notes-text-completion.request";
 
@@ -18,13 +18,13 @@ const TastingNotesTextCompletion: FC = () => {
     }
 
     return (
-        <>
-            <h1>Generate Tasting Notes</h1>
-            <TextForm handleSubmit={handleSubmit}/>
+        <div>
+            <h2>Generate Tasting Notes</h2>
+            <TextForm handleSubmit={handleSubmit} buttonText={'Generate'}/>
             <ol>
-                {results.map(text => <li>{text}</li>)}
+                {results.map(text => <li><span>{text}</span></li>)}
             </ol>
-        </>
+        </div>
     )
 }
 
